@@ -1,3 +1,5 @@
+package cz.uhk.pro2;
+
 import cz.uhk.pro2.model.Point;
 import cz.uhk.pro2.model.Polygon;
 import cz.uhk.pro2.raster.*;

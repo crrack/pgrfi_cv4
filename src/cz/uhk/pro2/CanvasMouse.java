@@ -1,3 +1,4 @@
+package cz.uhk.pro2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,11 +78,7 @@ public class CanvasMouse {
 
             public void mouseReleased(MouseEvent e) {
                 lines.add(new Line(x1,y1,e.getX(),e.getY()));
-                for (int i = 0; i < lines.size(); i++){
-                    lineRasterizer.rasterize(lines.get(i));
-                }
-                System.out.println(lines.size());
-                panel.repaint();
+                redraw();
             }
         });
 
@@ -89,6 +86,7 @@ public class CanvasMouse {
             @Override
             public void mouseDragged(MouseEvent e) {
                 clear();
+                redraw();
                 lineRasterizer.rasterize(x1,y1,e.getX(),e.getY());
                 panel.repaint();
             }
@@ -100,6 +98,13 @@ public class CanvasMouse {
         Graphics gr = img.getGraphics();
         gr.setColor(new Color(0x2f2f2f));
         gr.fillRect(0, 0, img.getWidth(), img.getHeight());
+    }
+
+    public void redraw() {
+        for (int i = 0; i < lines.size(); i++){
+            lineRasterizer.rasterize(lines.get(i));
+        }
+        panel.repaint();
     }
 
     public void present(Graphics graphics) {
